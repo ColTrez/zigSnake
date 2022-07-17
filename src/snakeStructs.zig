@@ -1,3 +1,17 @@
+pub const Config = struct {
+    gamespeed: u32,
+    boardHeight: u32,
+    boardWidth: u32,
+
+    pub fn getYOffset(self: *const Config) u32 {
+        return self.boardHeight / 2;
+    }
+
+    pub fn getXOffset(self: *const Config) u32 {
+        return self.boardWidth / 2;
+    }
+};
+
 pub const Segment = struct {
     y: u32,
     x: u32,
