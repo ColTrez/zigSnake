@@ -1,20 +1,20 @@
 pub const Config = struct {
-    gamespeed: u32,
-    boardHeight: u32,
-    boardWidth: u32,
+    gamespeed: i32,
+    boardHeight: i32,
+    boardWidth: i32,
 
-    pub fn getYOffset(self: *const Config) u32 {
-        return self.boardHeight / 2;
+    pub fn getYOffset(self: *const Config) i32 {
+        return @divTrunc(self.boardHeight, 2);
     }
 
-    pub fn getXOffset(self: *const Config) u32 {
-        return self.boardWidth / 2;
+    pub fn getXOffset(self: *const Config) i32 {
+        return @divTrunc(self.boardWidth, 2);
     }
 };
 
 pub const Segment = struct {
-    y: u32,
-    x: u32,
+    y: i32,
+    x: i32,
     next: ?*Segment = null,
 };
 
@@ -37,7 +37,7 @@ pub const Queue = struct {
     }
 };
 
-pub fn initSnake(snakeHeadY: u32, snakeHeadX: u32) Queue {
+pub fn initSnake(snakeHeadY: i32, snakeHeadX: i32) Queue {
     var sHead = Segment{ .y = snakeHeadY, .x = snakeHeadX };
     var sBody = Segment{ .y = snakeHeadY, .x = snakeHeadX - 1, .next = &sHead };
     var sTail = Segment{ .y = snakeHeadY, .x = snakeHeadX - 2, .next = &sBody };
